@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  nextjs:
+    ports:
+      - 3000:3000
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    restart: always
+    networks:
+      - test
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    restart: always
+    networks:
+      - test
+
+networks:
+  test:
+    name: nat
